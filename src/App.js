@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import NavBar from "./Components/NavBar/NavBar";
 import ProductList from "./Components/ProductList/ProductList";
 
 class App extends Component {
@@ -37,12 +38,18 @@ class App extends Component {
     if (!this.state.products.length)
       return "Go To Shopping There Is No Product In Cart";
     return (
-      <ProductList
-        products={this.state.products}
-        deleteHandler={this.onDelete}
-        decrementHandler={this.onDec}
-        incrementHandler={this.onInc}
-      />
+      <div className="container">
+        <NavBar
+          totalItems={this.state.products.filter((p) => p.quantity > 0).length}
+        />
+        
+        <ProductList
+          products={this.state.products}
+          deleteHandler={this.onDelete}
+          decrementHandler={this.onDec}
+          incrementHandler={this.onInc}
+        />
+      </div>
     );
   }
 }
